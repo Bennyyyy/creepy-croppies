@@ -11,6 +11,9 @@ func _ready() -> void:
 	play_button.pressed.connect(_on_play_pressed)
 	exit_button.pressed.connect(_on_exit_pressed)
 	_init_process_mode = process_mode
+	if OS.get_name() == "Web":
+		exit_button.disabled = true
+		exit_button.visible = false
 	play_button.grab_focus()
 
 func enable() -> void:
@@ -25,12 +28,12 @@ func disable() -> void:
 	get_tree().paused = false
 
 func _on_play_pressed() -> void:
-	print("play pressed")
+	# print("play pressed")
 	Game.audio.play_click()
 	Game.load_level(Game.main_level_scn)
 	disable()
 
 func _on_exit_pressed() -> void:
-	print("exit pressed")
+	# print("exit pressed")
 	Game.audio.play_click()
 	get_tree().quit()

@@ -23,6 +23,7 @@ func enable() -> void:
 	visible = true
 	process_mode = _init_process_mode
 	day_stats.update_internals()
+	continue_button.grab_focus()
 
 
 func disable() -> void:
@@ -30,7 +31,7 @@ func disable() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_continue_pressed() -> void:
-	print("continue pressed")
+	# print("continue pressed")
 	Game.audio.play_click()
 	continue_game.emit()
 

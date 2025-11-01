@@ -28,6 +28,7 @@ func _process(_delta: float) -> void:
 func play(config: CutsceneConfig):
 
 	hero.texture = config.hero_texture
+	lines_label.text = ""
 
 	visible = true
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -44,7 +45,10 @@ func play(config: CutsceneConfig):
 	lines_label.visible = true
 	for line in config.lines:
 		lines_label.text = line
-		await(input_proceed)
+		var t = get_tree().create_timer(0.1)
+		await t.timeout
+		await input_proceed
+		# printt("finished line:", line)
 	lines_label.visible = true
 	animation_player.play(exit_anim)
 	await animation_player.animation_finished
